@@ -50,7 +50,24 @@ input[type=text],input[type=number],input[type=date],textarea,select{background:
 .theme-card .current-theme{background:var(--panel2);color:var(--green);border:1px solid var(--green)}
 .theme-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.theme-tools label{font-size:10px;color:var(--muted)}.theme-tools input{width:100%;height:40px;padding:3px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
 @media(max-width:380px){.theme-grid{grid-template-columns:1fr}}
-</style>
+/* AWAKENING PLAYER ONBOARDING */
+.onboarding{position:fixed;inset:0;z-index:60;background:radial-gradient(circle at 50% 20%,#1c3458,#070b16 75%);display:none;overflow-y:auto;padding:25px 18px calc(30px + env(safe-area-inset-bottom));}
+.onboarding.show{display:block;animation:fade .4s}
+.onboard-wrap{max-width:520px;margin:auto}
+.onboard-heading{text-align:center;margin:15px 0 20px}
+.onboard-heading h1{font-size:27px;letter-spacing:4px;color:#8be5ff;margin:5px}
+.onboard-heading p{color:#a9b8d2;font-size:12px}
+.onboard-character{display:flex;justify-content:center;align-items:center;gap:20px;margin:12px 0 22px}
+.onboard-character .character-art{width:125px;height:155px;border-radius:18px;flex:none}
+.onboard-character .hunter-silhouette{transform:scale(1.05)}
+.onboard-question{font-size:16px;font-weight:900;margin:18px 0 10px}
+.goal-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.goal-option{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid #344766;border-radius:12px;background:#111d32;color:#eaf3ff;font-size:12px;font-weight:700}
+.goal-option input{width:18px;height:18px;accent-color:#63d9ff}
+.onboard-note{font-size:11px;color:#91a0bd;margin:8px 0}
+.onboard-actions{margin:22px 0;text-align:center}
+.onboard-actions button{width:100%}
+@media(max-width:380px){.goal-options{grid-template-columns:1fr}}</style>
 </head>
 <body>
 <div class="loader" id="loader"><div style="text-align:center"><div class="eyebrow">SYSTEM INITIALISING</div><div class="loader-mark">✦ AWAKENING</div><div class="loader-line"></div><div class="muted tiny">PREPARING YOUR HUNTER PROFILE</div></div></div>
