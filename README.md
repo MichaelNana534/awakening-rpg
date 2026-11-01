@@ -2,10 +2,12 @@
 
 ## Included
 - `index.html` — app interface
-- `app.js` — progression, quests, finance, rewards and backup logic
+- `app.js` — progression, quests, finance, rewards, backup logic and personal theme store
 - `manifest.webmanifest` — install metadata
 - `service-worker.js` — offline app-shell cache\n- Immersive boot sequence, System notification panel, hunter evolution profile, equipment unlocks and ability unlocks
 - `icons/` — 192px, 512px and maskable PWA icons
+- Personal Theme Store — eight built-in palettes (Midnight, Ocean, Blossom, Nature, Lavender, Sunrise, Minimal and Galaxy), plus custom themes
+- Theme selection and custom palettes are saved in the existing local progress backup
 
 ## Deploy free with GitHub Pages
 1. Sign in to GitHub and create a new **public** repository named `awakening` (or another name).
@@ -17,7 +19,7 @@
 7. Launch AWAKENING from the new Home Screen icon. Open it once while online so the service worker can cache the app shell.
 
 ## Updating
-Edit the files locally, then upload/commit the changed files to the same repository. Keep the same browser storage key in `app.js` (`awakening_rpg_v2`) so ordinary app updates do not reset progress. The service worker cache version can be incremented when changing the offline shell. Export a JSON backup before major updates.
+Edit the files locally, then upload/commit the changed files to the same repository. Keep the same browser storage key in `app.js` (`awakening_rpg_v2`) so ordinary app updates do not reset progress. The service-worker cache has been advanced to v3 for this update. The service worker cache version can be incremented when changing the offline shell. Export a JSON backup before major updates.
 
 ## Where data lives
 Progress is stored in the browser's `localStorage` on the device and browser origin. It is not synced to a server and is not automatically shared between Safari and other browsers/devices. Clearing Safari website data, removing site data, or changing the hosted domain can make the local save inaccessible. Use **Settings → Export backup** regularly. To restore, use **Import backup** on the same app origin.
