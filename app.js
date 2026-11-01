@@ -159,5 +159,4 @@ render=function(){
   if(tag)tag.textContent='HUNTER · '+(s.name||'HUNTER').toUpperCase();
 };
 
-connectOnboarding();
-     })();
+connectOnboarding();})();
