@@ -72,7 +72,56 @@ input[type=text],input[type=number],input[type=date],textarea,select{background:
 </head>
 <body>
 <div class="loader" id="loader"><div style="text-align:center"><div class="eyebrow">SYSTEM INITIALISING</div><div class="loader-mark">✦ AWAKENING</div><div class="loader-line"></div><div class="muted tiny">PREPARING YOUR HUNTER PROFILE</div></div></div>
-<div class="app">
+<!-- AWAKENING PLAYER ONBOARDING -->
+<div id="onboarding" style="display:none;position:fixed;inset:0;z-index:60;overflow-y:auto;background:radial-gradient(circle at top,#1c3458,#070b16 75%);padding:25px 18px;">
+  <div style="max-width:500px;margin:auto">
+
+    <div style="text-align:center;margin:15px 0 20px">
+      <div class="eyebrow">YOUR NEW JOURNEY BEGINS</div>
+      <h1 style="color:#8be5ff;letter-spacing:4px">AWAKENING</h1>
+      <p class="muted">Every great hunter begins with a purpose.</p>
+    </div>
+
+    <div class="character-card card">
+      <div class="character-art">
+        <div class="aura"></div>
+        <div class="hunter-silhouette"><i></i></div>
+        <div class="character-tag">YOUR AWAKENED SELF</div>
+      </div>
+    </div>
+
+    <h2>First, tell us about yourself.</h2>
+    <label class="field" for="onboardName">What should we call you?</label>
+    <input id="onboardName" type="text" maxlength="28" placeholder="Enter your name">
+
+    <h2>What did you come here to achieve?</h2>
+    <p class="muted tiny">Select all the goals that matter to you.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+      <label class="card"><input type="checkbox" value="Bodybuilding" class="onboardGoal"> 💪 Bodybuilding</label>
+      <label class="card"><input type="checkbox" value="Education" class="onboardGoal"> 📚 Education</label>
+      <label class="card"><input type="checkbox" value="Financial growth" class="onboardGoal"> 💰 Finances</label>
+      <label class="card"><input type="checkbox" value="Discipline" class="onboardGoal"> ⚔️ Discipline</label>
+      <label class="card"><input type="checkbox" value="Confidence" class="onboardGoal"> 🔥 Confidence</label>
+      <label class="card"><input type="checkbox" value="Productivity" class="onboardGoal"> 🎯 Productivity</label>
+      <label class="card"><input type="checkbox" value="Personal development" class="onboardGoal"> 🌱 Personal growth</label>
+      <label class="card"><input type="checkbox" value="Healthy habits" class="onboardGoal"> ✨ Healthy habits</label>
+
+    </div>
+
+    <div style="margin-top:22px">
+      <button id="onboardContinue" style="width:100%">BEGIN MY AWAKENING →</button>
+    </div>
+
+    <p class="muted tiny" style="text-align:center;margin-top:12px">
+      Your goals will help shape your personal progression journey.
+    </p>
+
+  </div>
+</div>
+<!-- END PLAYER ONBOARDING -->
+ <div class="app">
 <header><div><div class="eyebrow">PERSONAL PROGRESSION SYSTEM</div><div class="brand">✦ AWAKENING</div></div><div class="season">SEASON 01 · THE BUILD</div></header>
 <section class="hero">
  <div class="eyebrow">PLAYER PROFILE · HUNTER 001</div><h1 id="greeting">Michael</h1><div class="sub" id="goalLine">Small actions. Daily proof. Real transformation.</div>
