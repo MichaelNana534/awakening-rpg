@@ -160,5 +160,4 @@ render=function(){
 };
 
 connectOnboarding();
-
-})();
+     })();
