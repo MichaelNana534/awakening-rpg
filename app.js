@@ -97,4 +97,68 @@ if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addE
 if(location.protocol==='file:')$('installStatus').textContent='This is running as a local file. PWA installation and offline caching require a secure HTTPS host.';
 if(window.navigator.standalone)$('installStatus').textContent='AWAKENING is running from your iPhone Home Screen.';
 applyTheme(s.theme,true);save();render();window.addEventListener('load',()=>setTimeout(()=>$('loader')?.classList.add('hidden'),450));setTimeout(()=>$('loader')?.classList.add('hidden'),1800);
+// AWAKENING ONBOARDING CONNECTION
+function connectOnboarding(){
+  const panel=$('onboarding');
+  if(!panel)return;
+
+  if(s.onboardingComplete){
+    panel.style.display='none';
+    return;
+  }
+
+  const nameField=$('onboardName');
+  const continueBtn=$('onboardContinue');
+
+  if(nameField&&s.name&&s.name!=='Michael'){
+    nameField.value=s.name;
+  }
+
+  if(continueBtn){
+    continueBtn.onclick=()=>{
+      const name=(nameField?.value||'').trim().slice(0,28);
+      const goals=[...document.querySelectorAll('.onboardGoal:checked')]
+        .map(x=>x.value);
+
+      if(!name){
+        toast('Enter your hunter name first.');
+        nameField?.focus();
+        return;
+      }
+
+      if(!goals.length){
+        toast('Select at least one goal.');
+        return;
+      }
+
+      s.name=name;
+      s.goals=goals;
+      s.goal=goals.join(', ');
+      s.onboardingComplete=true;
+
+      save();
+      render();
+      panel.style.display='none';
+      toast('Your awakening has begun. Welcome, Hunter '+name+'!');
+    };
+  }
+
+  setTimeout(()=>{
+    if(!s.onboardingComplete){
+      sessionStorage.setItem('awakening_intro_seen','1');
+      panel.style.display='block';
+    }
+  },1200);
+}
+
+// Keep the Hunter Development name updated.
+const originalAwakeningRender=render;
+render=function(){
+  originalAwakeningRender();
+  const tag=document.querySelector('#page-growth .character-tag');
+  if(tag)tag.textContent='HUNTER · '+(s.name||'HUNTER').toUpperCase();
+};
+
+connectOnboarding();
+
 })();
