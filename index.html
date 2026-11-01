@@ -68,7 +68,98 @@ input[type=text],input[type=number],input[type=date],textarea,select{background:
 .onboard-actions{margin:22px 0;text-align:center}
 .onboard-actions button{width:100%}
 @media(max-width:380px){.goal-options{grid-template-columns:1fr}}
-</style>
+/* AWAKENING IMMERSIVE THEME ENVIRONMENTS */
+.app{position:relative;z-index:1}
+body::before,body::after{
+  content:"";
+  position:fixed;
+  inset:-15%;
+  pointer-events:none;
+  z-index:0;
+  opacity:0;
+  transition:opacity 1s;
+}
+body[data-theme="blossom"]::before{
+  opacity:.65;
+  background-image:
+  radial-gradient(ellipse 7px 3px at 10% 15%,#ffc0d6 98%,transparent),
+  radial-gradient(ellipse 6px 3px at 30% 35%,#ff9fc2 98%,transparent),
+  radial-gradient(ellipse 7px 3px at 55% 10%,#ffe0eb 98%,transparent),
+  radial-gradient(ellipse 6px 3px at 75% 45%,#ffb4d0 98%,transparent),
+  radial-gradient(ellipse 7px 3px at 90% 20%,#ffc0d6 98%,transparent);
+  animation:blossomFall 16s linear infinite;
+}
+body[data-theme="ocean"]::before{
+  opacity:.35;
+  background:repeating-radial-gradient(ellipse at 50% 100%,transparent 0 35px,#4ee2d055 38px 40px,transparent 43px 75px);
+  animation:oceanWaves 10s ease-in-out infinite;
+}
+body[data-theme="nature"]::before{
+  opacity:.65;
+  background-image:
+  radial-gradient(circle at 15% 25%,#c4f7a8 0 2px,transparent 4px),
+  radial-gradient(circle at 42% 65%,#a7e98b 0 2px,transparent 4px),
+  radial-gradient(circle at 78% 30%,#d6ff9a 0 2px,transparent 4px),
+  radial-gradient(circle at 90% 75%,#a7e98b 0 2px,transparent 4px);
+  animation:fireflyGlow 5s ease-in-out infinite alternate;
+}
+body[data-theme="lavender"]::before{
+  opacity:.5;
+  background-image:radial-gradient(circle,#e5c5ff 1px,transparent 3px);
+  background-size:65px 75px;
+  animation:lavenderFloat 12s linear infinite;
+}
+body[data-theme="sunrise"]::before{
+  opacity:.65;
+  background:radial-gradient(ellipse at 50% 100%,#ffb65c55,transparent 65%);
+  animation:sunriseGlow 7s ease-in-out infinite alternate;
+}
+body[data-theme="galaxy"]::before{
+  opacity:.7;
+  background-image:
+  radial-gradient(circle at 15% 20%,white 1px,transparent 2px),
+  radial-gradient(circle at 65% 35%,#c9aaff 1px,transparent 2px),
+  radial-gradient(circle at 85% 75%,white 1px,transparent 2px),
+  radial-gradient(circle at 35% 80%,#8be5ff 1px,transparent 2px);
+  background-size:170px 160px;
+  animation:galaxyTwinkle 5s ease-in-out infinite alternate;
+}
+body[data-theme="midnight"]::before{
+  opacity:.4;
+  background:linear-gradient(120deg,transparent 20%,#438bff22 45%,#a78bfa22 60%,transparent 80%);
+  animation:midnightAurora 12s ease-in-out infinite alternate;
+}
+@keyframes blossomFall{
+  from{transform:translateY(-5%) rotate(0deg)}
+  to{transform:translateY(18%) rotate(35deg)}
+}
+@keyframes oceanWaves{
+  0%,100%{transform:translateX(-3%) scale(1)}
+  50%{transform:translateX(3%) scale(1.04)}
+}
+@keyframes fireflyGlow{
+  from{opacity:.2;transform:translateY(0)}
+  to{opacity:.8;transform:translateY(-18px)}
+}
+@keyframes lavenderFloat{
+  from{transform:translateY(0)}
+  to{transform:translateY(-35px)}
+}
+@keyframes sunriseGlow{
+  from{transform:scale(1);opacity:.35}
+  to{transform:scale(1.12);opacity:.8}
+}
+@keyframes galaxyTwinkle{
+  from{opacity:.25;transform:scale(1)}
+  to{opacity:.9;transform:scale(1.04)}
+}
+@keyframes midnightAurora{
+  from{transform:translateX(-8%) skewX(-5deg)}
+  to{transform:translateX(8%) skewX(5deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  body::before,body::after{animation:none!important}
+}</style>
 </head>
 <body>
 <div class="loader" id="loader"><div style="text-align:center"><div class="eyebrow">SYSTEM INITIALISING</div><div class="loader-mark">✦ AWAKENING</div><div class="loader-line"></div><div class="muted tiny">PREPARING YOUR HUNTER PROFILE</div></div></div>
