@@ -74,9 +74,9 @@ $('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=asyn
 $('reset').onclick=()=>{if(confirm('Permanently reset all AWAKENING data on this device? Export a backup first if you may need it.')){s=base();save();render();toast('Progress reset. A new chapter begins.')}};
 document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.navbtn').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+b.dataset.page));window.scrollTo({top:0,behavior:'smooth'})});
 $('closeRank').onclick=()=>$('rankup').classList.remove('show');
-$('systemClose').onclick=()=>$('systemModal').classList.remove('show');
+if($('systemClose'))$('systemClose').onclick=()=>$('systemModal')?.classList.remove('show');
 setTimeout(()=>$('bootScreen').classList.add('hide'),1150);
-setTimeout(()=>{if(!sessionStorage.getItem('awakening_intro_seen')){systemMessage('PLAYER MICHAEL AWAKENED','The System is online. Your daily missions are ready. Complete real-world quests, earn experience and shape your evolution.');sessionStorage.setItem('awakening_intro_seen','1')}},1450);
+if($('systemTitle')&&$('systemMessage')&&$('systemModal'))setTimeout(()=>{if(!sessionStorage.getItem('awakening_intro_seen')){systemMessage('PLAYER MICHAEL AWAKENED','The System is online. Your daily missions are ready. Complete real-world quests, earn experience and shape your evolution.');sessionStorage.setItem('awakening_intro_seen','1')}},1450);
 let installPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installBtn').hidden=false});$('installBtn').onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else toast('On iPhone, use Safari Share → Add to Home Screen.')};
 if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 if(location.protocol==='file:')$('installStatus').textContent='This is running as a local file. PWA installation and offline caching require a secure HTTPS host.';
