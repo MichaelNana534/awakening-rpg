@@ -281,7 +281,22 @@ body[data-theme="midnight"]::before{
  <h2>Player settings</h2><div class="card"><label class="field" for="playerName">Character name</label><input id="playerName" type="text" maxlength="28"><label class="field" for="goal">Season goal</label><textarea id="goal" rows="3" maxlength="300"></textarea><div class="actions"><button id="saveProfile">Save profile</button></div></div>
  <h2>Appearance & themes</h2>
  <div class="card"><div class="row"><div><b>Personalise your AWAKENING</b><p class="muted tiny">Choose a look for your own device. Your theme is saved automatically.</p></div><span class="badge">THEME STORE</span></div>
- <div id="themeStore" class="theme-grid" aria-live="polite"></div></div>
+ <div id="themeStore" class="theme-grid" aria-live="polite"></div></div><!-- AWAKENING THEME MUSIC -->
+<h2>Theme soundtrack</h2>
+<div class="card">
+  <div class="row">
+    <div>
+      <b>Ambient soundtrack</b>
+      <p class="muted tiny" id="musicStatus">Soundtrack is currently off.</p>
+    </div>
+    <span class="badge">AUDIO SYSTEM</span>
+  </div>
+  <div class="actions">
+    <button id="musicToggle" class="secondary" type="button">
+      ♫ Turn music ON
+    </button>
+  </div>
+</div>
  <h2>Create your own theme</h2>
  <div class="card"><label class="field" for="customThemeName">Theme name</label><input id="customThemeName" type="text" maxlength="24" placeholder="e.g. Michael's Aura"><div class="theme-tools" style="margin-top:12px"><label>Background<input id="customBg" type="color" value="#101827"></label><label>Accent<input id="customAccent" type="color" value="#63d9ff"></label><label>Panels<input id="customPanel" type="color" value="#1a2638"></label></div><div class="actions"><button id="saveCustomTheme">Save custom theme</button></div><p class="muted tiny">Custom themes are stored on this device and can be selected from your Theme Store.</p></div>
  <h2>Save data & backup</h2><div class="card"><p class="muted tiny">Progress is saved automatically in this browser's local storage on this device. Export a backup regularly and keep it somewhere safe.</p><div class="actions"><button id="export">Export backup</button><button class="secondary" id="importBtn">Import backup</button><input id="importFile" type="file" accept="application/json,.json" hidden></div><div class="actions"><button class="danger" id="reset">Reset all progress</button></div></div>
