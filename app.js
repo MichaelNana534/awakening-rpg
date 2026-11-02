@@ -27,6 +27,99 @@ const themes=[
 {id:'galaxy',name:'Galaxy',desc:'Cosmic purple · starlight',bg:'#100b20',panel:'#1c1533',panel2:'#2a2048',line:'#49366d',text:'#f7f0ff',muted:'#b9a9d6',accent:'#b99aff',violet:'#65d9ff',glow:'#39205f'}
 ];
 function allThemes(){return [...themes,...(s.customThemes||[])]}
+      // AWAKENING AMBIENT SOUND ENGINE
+const ambientProfiles={
+  midnight:{root:110,second:164.81,third:220,wave:'sine',filter:500},
+  ocean:{root:130.81,second:196,third:261.63,wave:'sine',filter:700},
+  blossom:{root:261.63,second:329.63,third:392,wave:'triangle',filter:1100},
+  nature:{root:146.83,second:220,third:293.66,wave:'sine',filter:850},
+  lavender:{root:174.61,second:261.63,third:349.23,wave:'triangle',filter:900},
+  sunrise:{root:196,second:293.66,third:392,wave:'sine',filter:1200},
+  minimal:{root:220,second:330,third:440,wave:'sine',filter:600},
+  galaxy:{root:82.41,second:123.47,third:164.81,wave:'sine',filter:400}
+};
+
+let audioContext=null;
+let musicMaster=null;
+let musicEnabled=false;
+let activeVoices=[];
+
+function updateMusicButton(){
+  const button=$('musicToggle');
+  const status=$('musicStatus');
+  if(button)button.textContent=musicEnabled?'♫ Turn music OFF':'♫ Turn music ON';
+  if(status)status.textContent=musicEnabled?'Ambient soundtrack is playing.':'Soundtrack is currently off.';
+}
+
+function playThemeAmbient(id){
+  if(!musicEnabled||!audioContext)return;
+
+  const p=ambientProfiles[id]||ambientProfiles.midnight;
+  const now=audioContext.currentTime;
+
+  activeVoices.forEach(v=>{
+    v.gain.gain.cancelScheduledValues(now);
+    v.gain.gain.setTargetAtTime(0,now,.2);
+    try{v.osc.stop(now+1)}catch(e){}
+  });
+  activeVoices=[];
+
+  [p.root,p.second,p.third].forEach((frequency,i)=>{
+    const osc=audioContext.createOscillator();
+    const gain=audioContext.createGain();
+    const filter=audioContext.createBiquadFilter();
+
+    osc.type=p.wave;
+    osc.frequency.value=frequency;
+    filter.type='lowpass';
+    filter.frequency.value=p.filter;
+
+    gain.gain.value=0;
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(musicMaster);
+
+    gain.gain.setTargetAtTime([0.16,0.09,0.045][i],now,2+i);
+    osc.start();
+
+    activeVoices.push({osc,gain});
+  });
+
+  musicMaster.gain.cancelScheduledValues(now);
+  musicMaster.gain.setTargetAtTime(0.16,now,1.5);
+}
+
+async function enableAmbientMusic(){
+  try{
+    const Audio=window.AudioContext||window.webkitAudioContext;
+    if(!Audio){
+      toast('Audio is not supported on this browser.');
+      return;
+    }
+
+    if(!audioContext){
+      audioContext=new Audio();
+      musicMaster=audioContext.createGain();
+      musicMaster.gain.value=0;
+      musicMaster.connect(audioContext.destination);
+    }
+
+    await audioContext.resume();
+    musicEnabled=true;
+    playThemeAmbient(s.theme);
+    updateMusicButton();
+  }catch(e){
+    toast('Could not start the soundtrack. Please try again.');
+  }
+}
+
+function disableAmbientMusic(){
+  musicEnabled=false;
+  if(audioContext&&musicMaster){
+    musicMaster.gain.setTargetAtTime(0,audioContext.currentTime,.4);
+  }
+  updateMusicButton();
+}
 function applyTheme(id,quiet=false){const t=allThemes().find(x=>x.id===id)||themes[0];s.theme=t.id;const root=document.documentElement;document.body.dataset.theme=t.id;const vars={bg:t.bg,panel:t.panel,panel2:t.panel2,line:t.line,text:t.text,muted:t.muted,blue:t.accent,violet:t.violet||'#a78bfa','theme-glow':t.glow||t.bg,'theme-panel-strong':t.panel2,'theme-panel-alt':t.panel,'button-text':t.buttonText||'#08101d'};Object.entries(vars).forEach(([k,v])=>root.style.setProperty('--'+k,v));document.querySelector('meta[name="theme-color"]')?.setAttribute('content',t.bg);save();renderThemeStore();if(!quiet)toast(t.name+' theme applied.')}
 function renderThemeStore(){const host=$('themeStore');if(!host)return;host.innerHTML=allThemes().map(t=>{const active=s.theme===t.id;return `<div class="theme-card"><div class="theme-swatch" style="background:linear-gradient(135deg,${t.bg},${t.panel2})"><i style="background:${t.accent}"></i><i style="background:${t.violet||t.accent}"></i><i style="background:${t.panel}"></i></div><strong>${safe(t.name)} ${t.custom?'✦':''}</strong><small>${safe(t.desc||'Your personal colour palette')}</small><button class="${active?'current-theme':'secondary'}" data-theme-apply="${safe(t.id)}" ${active?'disabled':''}>${active?'✓ Currently applied':'Apply theme'}</button></div>`}).join('')}
 function createCustomTheme(){const name=$('customThemeName').value.trim().slice(0,24);if(!name){toast('Give your theme a name first.');return}const bg=$('customBg').value,accent=$('customAccent').value,panel=$('customPanel').value;const id='custom-'+Date.now();s.customThemes.push({id,name,desc:'Your own custom colour combination',bg,panel,panel2:panel,line:accent+'66',text:'#f7f8fc',muted:'#b7c0cf',accent,violet:accent,glow:panel,custom:true});$('customThemeName').value='';save();applyTheme(id);toast('Your custom theme has been saved.')}
