@@ -158,5 +158,6 @@ render=function(){
   const tag=document.querySelector('#page-growth .character-tag');
   if(tag)tag.textContent='HUNTER · '+(s.name||'HUNTER').toUpperCase();
 };
+      document.querySelector('#page-growth .character-tag').textContent='HUNTER · '+(s.name||'HUNTER').toUpperCase();
 
 connectOnboarding();})();
