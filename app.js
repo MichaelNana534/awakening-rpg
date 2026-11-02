@@ -111,7 +111,6 @@ async function enableAmbientMusic(){
   }catch(e){
     toast('Could not start the soundtrack. Please try again.');
   }
-}
    
 }
  function disableAmbientMusic(){
