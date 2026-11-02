@@ -446,6 +446,71 @@ nav{
   .theme-preview span{
     animation:none!important;
   }
+}
+/* AWAKENING THEME PREVIEW EFFECT SEPARATION */
+
+/* Hide decorative elements by default */
+.theme-preview .scene-sun,
+.theme-preview .scene-core,
+.theme-preview .scene-ring,
+.theme-preview .scene-wave,
+.theme-preview .scene-petal,
+.theme-preview .scene-stars{
+  display:none;
+}
+
+/* BLOSSOM */
+.scene-blossom .scene-petal{
+  display:block;
+}
+
+/* OCEAN */
+.scene-ocean .scene-wave{
+  display:block;
+}
+
+/* NATURE */
+.scene-nature .scene-stars{
+  display:block;
+}
+
+/* GALAXY */
+.scene-galaxy .scene-core,
+.scene-galaxy .scene-ring,
+.scene-galaxy .scene-stars{
+  display:block;
+}
+
+/* SUNRISE */
+.scene-sunrise .scene-sun{
+  display:block;
+}
+
+/* LAVENDER */
+.scene-lavender .scene-stars{
+  display:block;
+}
+
+/* MIDNIGHT */
+.scene-midnight .scene-stars{
+  display:block;
+}
+
+/* MINIMAL */
+.scene-minimal .scene-core{
+  display:block;
+}
+
+/* Keep custom themes clean */
+.theme-preview[class*="scene-custom-"] span{
+  display:none;
+}
+
+/* ACCESSIBILITY */
+@media(prefers-reduced-motion:reduce){
+  .theme-preview span{
+    animation:none!important;
+  }
 }</style>
 </head>
 <body>
