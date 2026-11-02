@@ -119,13 +119,7 @@ function disableAmbientMusic(){
     musicMaster.gain.setTargetAtTime(0,audioContext.currentTime,.4);
   }
   updateMusicButton();
-      $('musicToggle')?.addEventListener('click',()=>{
-  if(musicEnabled){
-    disableAmbientMusic();
-  }else{
-    enableAmbientMusic();
-  }
-});
+      
 }
       // CONNECT THE MUSIC ON/OFF BUTTON
 document.getElementById('musicToggle')?.addEventListener('click',()=>{
