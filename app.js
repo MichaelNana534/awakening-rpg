@@ -110,10 +110,10 @@ async function enableAmbientMusic(){
     updateMusicButton();
   }catch(e){
     toast('Could not start the soundtrack. Please try again.');
-}
+  }
 }
       
- function disableAmbientMusic(){
+function disableAmbientMusic(){
   musicEnabled=false;
   if(audioContext&&musicMaster){
     musicMaster.gain.setTargetAtTime(0,audioContext.currentTime,.4);
