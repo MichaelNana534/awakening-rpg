@@ -120,6 +120,14 @@ function disableAmbientMusic(){
   }
   updateMusicButton();
 }
+      // CONNECT THE MUSIC ON/OFF BUTTON
+document.getElementById('musicToggle')?.addEventListener('click',()=>{
+  if(musicEnabled){
+    disableAmbientMusic();
+  }else{
+    enableAmbientMusic();
+  }
+});
 function applyTheme(id,quiet=false){const t=allThemes().find(x=>x.id===id)||themes[0];s.theme=t.id;const root=document.documentElement;document.body.dataset.theme=t.id;const vars={bg:t.bg,panel:t.panel,panel2:t.panel2,line:t.line,text:t.text,muted:t.muted,blue:t.accent,violet:t.violet||'#a78bfa','theme-glow':t.glow||t.bg,'theme-panel-strong':t.panel2,'theme-panel-alt':t.panel,'button-text':t.buttonText||'#08101d'};Object.entries(vars).forEach(([k,v])=>root.style.setProperty('--'+k,v));document.querySelector('meta[name="theme-color"]')?.setAttribute('content',t.bg);save();renderThemeStore();if(!quiet)toast(t.name+' theme applied.')}
 function renderThemeStore(){const host=$('themeStore');if(!host)return;host.innerHTML=allThemes().map(t=>{const active=s.theme===t.id;return `<div class="theme-card"><div class="theme-swatch" style="background:linear-gradient(135deg,${t.bg},${t.panel2})"><i style="background:${t.accent}"></i><i style="background:${t.violet||t.accent}"></i><i style="background:${t.panel}"></i></div><strong>${safe(t.name)} ${t.custom?'✦':''}</strong><small>${safe(t.desc||'Your personal colour palette')}</small><button class="${active?'current-theme':'secondary'}" data-theme-apply="${safe(t.id)}" ${active?'disabled':''}>${active?'✓ Currently applied':'Apply theme'}</button></div>`}).join('')}
 function createCustomTheme(){const name=$('customThemeName').value.trim().slice(0,24);if(!name){toast('Give your theme a name first.');return}const bg=$('customBg').value,accent=$('customAccent').value,panel=$('customPanel').value;const id='custom-'+Date.now();s.customThemes.push({id,name,desc:'Your own custom colour combination',bg,panel,panel2:panel,line:accent+'66',text:'#f7f8fc',muted:'#b7c0cf',accent,violet:accent,glow:panel,custom:true});$('customThemeName').value='';save();applyTheme(id);toast('Your custom theme has been saved.')}
