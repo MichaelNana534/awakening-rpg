@@ -113,6 +113,12 @@ async function enableAmbientMusic(){
   }
 }
    
+}function disableAmbientMusic(){
+  musicEnabled=false;
+  if(audioContext&&musicMaster){
+    musicMaster.gain.setTargetAtTime(0,audioContext.currentTime,.4);
+  }
+  updateMusicButton();
 }
       // CONNECT THE MUSIC ON/OFF BUTTON
 document.getElementById('musicToggle')?.addEventListener('click',()=>{
