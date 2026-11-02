@@ -198,6 +198,254 @@ body[data-theme="midnight"]::before{
 
 nav{
   z-index:7;
+}
+/* AWAKENING IMMERSIVE THEME STORE PREVIEWS */
+
+.theme-preview{
+  height:125px;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  border-radius:12px;
+  margin-bottom:10px;
+  background:
+    radial-gradient(ellipse at 50% 110%,var(--scene-violet),transparent 65%),
+    linear-gradient(145deg,var(--scene-bg),#080b16);
+  border:1px solid #ffffff25;
+}
+
+.theme-preview span{
+  position:absolute;
+  display:block;
+  pointer-events:none;
+}
+
+/* SUNLIGHT */
+.scene-sun{
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  left:50%;
+  top:15px;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,var(--scene-accent),transparent 70%);
+  filter:blur(5px);
+  opacity:.8;
+}
+
+/* BLOSSOM PETALS */
+.scene-petal{
+  width:12px;
+  height:19px;
+  border-radius:80% 10% 80% 10%;
+  background:linear-gradient(135deg,#fff0f6,#ff8fba);
+  box-shadow:0 0 9px #ff9fc277;
+  animation:previewPetal 5s ease-in-out infinite;
+}
+
+.petal-one{left:20%;top:5px}
+.petal-two{left:52%;top:30px;animation-delay:1.5s}
+.petal-three{left:78%;top:0;animation-delay:3s}
+
+@keyframes previewPetal{
+  0%{transform:translateY(-10px) rotate(0)}
+  50%{transform:translate(18px,65px) rotate(180deg)}
+  100%{transform:translate(-5px,140px) rotate(360deg)}
+}
+
+.scene-blossom{
+  background:linear-gradient(160deg,#593047,#241720 75%);
+}
+
+/* OCEAN WAVES */
+.scene-wave{
+  left:-15%;
+  width:130%;
+  height:65px;
+  bottom:-20px;
+  border-radius:50% 50% 0 0;
+  background:linear-gradient(180deg,#65e8e0aa,#087caa);
+  animation:previewWave 5s ease-in-out infinite alternate;
+}
+
+.wave-one{bottom:-30px}
+.wave-two{
+  bottom:-43px;
+  opacity:.8;
+  animation-delay:1s;
+}
+.wave-three{
+  bottom:-55px;
+  opacity:.65;
+  animation-delay:2s;
+}
+
+@keyframes previewWave{
+  from{transform:translateX(-5%) rotate(-2deg)}
+  to{transform:translateX(5%) rotate(2deg)}
+}
+
+.scene-ocean{
+  background:linear-gradient(#063b58,#071923 80%);
+}
+
+/* NATURE */
+.scene-nature{
+  background:
+    radial-gradient(ellipse at 50% 100%,#356d42,transparent 70%),
+    linear-gradient(145deg,#193b28,#081b13);
+}
+
+.scene-nature .scene-stars{
+  inset:0;
+  background-image:
+    radial-gradient(circle,#d8ff9c 2px,transparent 4px),
+    radial-gradient(circle,#a8f5a4 2px,transparent 4px);
+  background-size:65px 55px,95px 80px;
+  animation:fireflyPreview 4s ease-in-out infinite alternate;
+}
+
+@keyframes fireflyPreview{
+  from{opacity:.2;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(-8px)}
+}
+
+/* GALAXY WORMHOLE */
+.scene-galaxy{
+  background:
+    radial-gradient(ellipse at center,#482276,#160c2d 48%,#080615);
+}
+
+.scene-galaxy .scene-core{
+  width:45px;
+  height:45px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#020106;
+  box-shadow:0 0 15px #a879ff,0 0 35px #8b4dff;
+}
+
+.scene-galaxy .scene-ring{
+  width:115px;
+  height:38px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) rotate(-20deg);
+  border:3px solid #c4a0ff;
+  border-radius:50%;
+  box-shadow:0 0 15px #a36cff;
+  animation:wormholePreview 4s linear infinite;
+}
+
+.scene-galaxy .scene-stars{
+  inset:0;
+  background-image:
+    radial-gradient(circle,white 1px,transparent 2px),
+    radial-gradient(circle,#c8aaff 1px,transparent 2px);
+  background-size:35px 30px,55px 45px;
+  animation:starPreview 5s linear infinite;
+}
+
+@keyframes wormholePreview{
+  to{transform:translate(-50%,-50%) rotate(340deg)}
+}
+
+@keyframes starPreview{
+  to{transform:rotate(12deg) scale(1.1)}
+}
+
+/* SUNRISE */
+.scene-sunrise{
+  background:linear-gradient(180deg,#41251e,#b65b37 65%,#f0a75c);
+}
+
+.scene-sunrise .scene-sun{
+  width:85px;
+  height:85px;
+  top:20px;
+  background:radial-gradient(circle,#fff1b5 5%,#ffc36e 40%,transparent 75%);
+  animation:sunrisePreview 4s ease-in-out infinite alternate;
+}
+
+@keyframes sunrisePreview{
+  to{transform:translateX(-50%) scale(1.2);opacity:.65}
+}
+
+/* LAVENDER */
+.scene-lavender{
+  background:linear-gradient(145deg,#33234f,#171426);
+}
+
+.scene-lavender .scene-stars{
+  inset:0;
+  background-image:
+    radial-gradient(circle,#f2d5ff 2px,transparent 3px),
+    radial-gradient(circle,#bca0ff 1px,transparent 3px);
+  background-size:35px 35px,55px 60px;
+  animation:lavenderPreview 8s linear infinite;
+}
+
+@keyframes lavenderPreview{
+  to{transform:translateY(-25px)}
+}
+
+/* MIDNIGHT AURORA */
+.scene-midnight{
+  background:linear-gradient(160deg,#07152c,#10102b);
+}
+
+.scene-midnight .scene-stars{
+  inset:-30%;
+  background:linear-gradient(
+    120deg,
+    transparent 25%,
+    #48d9ff66 42%,
+    #9875ff88 55%,
+    #52e4c766 68%,
+    transparent 80%
+  );
+  filter:blur(12px);
+  animation:auroraPreview 7s ease-in-out infinite alternate;
+}
+
+@keyframes auroraPreview{
+  from{transform:translateX(-15%) skewX(-12deg)}
+  to{transform:translateX(15%) skewX(12deg)}
+}
+
+/* MINIMAL */
+.scene-minimal{
+  background:linear-gradient(145deg,#f0f3f8,#bfcbd9);
+}
+
+.scene-minimal .scene-core{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border:1px solid #ffffff;
+  box-shadow:0 0 25px #ffffffaa;
+  animation:minimalPreview 5s ease-in-out infinite alternate;
+}
+
+@keyframes minimalPreview{
+  to{transform:translate(-50%,-50%) scale(1.2);opacity:.5}
+}
+
+/* CUSTOM THEMES */
+.theme-preview[class*="scene-custom-"]{
+  background:linear-gradient(145deg,var(--scene-bg),var(--scene-violet));
+}
+
+/* MOBILE AND ACCESSIBILITY */
+@media(prefers-reduced-motion:reduce){
+  .theme-preview span{
+    animation:none!important;
+  }
 }</style>
 </head>
 <body>
